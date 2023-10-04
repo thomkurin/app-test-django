@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Produtos Disponíveis</h1>
+    <ul>
+        {% for produto in produtos %}
+            <li>
+                <h2>{{ produto.nome }}</h2>
+                <p>Categoria: {{ produto.categoria }}</p>
+                <p>Descrição: {{ produto.descricao }}</p>
+                <p>Preço: R$ {{ produto.preco }}</p>
+            </li>
+        {% empty %}
+            <li>Nenhum produto disponível no momento.</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for produto in produtos %}
+            <li>
+                <h2>{{ produto.nome }}</h2>
+
+                <a href="{% url 'criar_pedido' %}">
+                    <button>Criar Pedido</button>
+                </a>
+            </li>
+        {% empty %}
+            <li>Nenhum produto disponível no momento.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'novo_produto' %}">
+        <button>Cadastrar Novo Produto</button>
+    </a>
+<br>
+
+<a href="{% url 'logout' %}">
+    <button>Logout</button>
+</a>
+
+</body>
+</html>

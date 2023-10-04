@@ -1,0 +1,26 @@
+<h1>Seu Carrinho</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Subtotal</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in carrinho_itens %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>R$ {{ item.subtotal }}</td>
+                <td><a href="{% url 'remover_do_carrinho' item.id %}">Remover</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">Seu carrinho está vazio.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Total: R$ {{ total }}</p>
